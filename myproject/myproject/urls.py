@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from django.views.generic import TemplateView
+from django.views.generic import ListView
+from results.models import *
 
-class Home(TemplateView):
+class NewList(ListView):
     template_name = 'index.html'
+    model = Question
 
 urlpatterns = [
     url('admin', admin.site.urls),
-    url('', Home.as_view()),
+    url('', NewList.as_view(), name="index"),
 ]
